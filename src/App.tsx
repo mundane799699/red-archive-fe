@@ -1,7 +1,10 @@
 import "./App.css";
+import "antd/dist/reset.css";
+import { RouterProvider } from "react-router-dom";
+import routerConfig from "./router";
 
 function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return <RouterProvider router={routerConfig} />;
 }
 
 export default App;

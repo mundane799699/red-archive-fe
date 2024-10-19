@@ -1,0 +1,39 @@
+.top {
+    display: flex;
+    margin-bottom: 10px;
+    .userId {
+        margin-right: 10px;
+    }
+
+    .title {
+        margin-right: 10px;
+    }
+
+    .author {
+        margin-right: 10px;
+    }
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    .left {
+        display: flex;
+        .export {
+            margin-right: 10px;
+        }
+    }
+    .right {
+        display: flex;
+        .start {
+            margin-right: 10px;
+        }
+        .showProgress {
+            margin-right: 10px;
+        }
+        .progress {
+            margin-right: 10px;
+        }
+    }
+
+}
