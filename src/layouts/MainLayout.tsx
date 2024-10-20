@@ -81,7 +81,7 @@ const MainLayout: FC = () => {
   };
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="bg-white shadow-md">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Logo />
           <nav className="hidden md:flex space-x-4">
@@ -117,49 +117,48 @@ const MainLayout: FC = () => {
             <MenuOutlined />
           </button>
         </div>
+        {/* 移动端菜单 */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white shadow-md border-t border-gray-200">
+            <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+              <button
+                onClick={() => nav(DOWNLOAD_PATHNAME)}
+                className="btn w-full text-left"
+              >
+                📦下载
+              </button>
+              <button
+                onClick={() => nav(PRICE_PATHNAME)}
+                className="btn w-full text-left"
+              >
+                💰价格
+              </button>
+              <Dropdown
+                menu={{ items: tutorialItems }}
+                placement="bottomLeft"
+                trigger={["click"]}
+              >
+                <button className="btn w-full text-left flex justify-between items-center">
+                  📜教程
+                  <DownOutlined />
+                </button>
+              </Dropdown>
+              <Dropdown
+                menu={{ items: scriptItems }}
+                placement="bottomLeft"
+                trigger={["click"]}
+              >
+                <button className="btn w-full text-left flex justify-between items-center">
+                  🐒油猴脚本(免费)
+                  <DownOutlined />
+                </button>
+              </Dropdown>
+            </div>
+          </div>
+        )}
       </header>
 
-      {/* 移动端菜单 */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-white shadow-md border-t border-gray-200">
-          <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-            <button
-              onClick={() => nav(DOWNLOAD_PATHNAME)}
-              className="btn w-full text-left"
-            >
-              📦下载
-            </button>
-            <button
-              onClick={() => nav(PRICE_PATHNAME)}
-              className="btn w-full text-left"
-            >
-              💰价格
-            </button>
-            <Dropdown
-              menu={{ items: tutorialItems }}
-              placement="bottomLeft"
-              trigger={["click"]}
-            >
-              <button className="btn w-full text-left flex justify-between items-center">
-                📜教程
-                <DownOutlined />
-              </button>
-            </Dropdown>
-            <Dropdown
-              menu={{ items: scriptItems }}
-              placement="bottomLeft"
-              trigger={["click"]}
-            >
-              <button className="btn w-full text-left flex justify-between items-center">
-                🐒油猴脚本(免费)
-                <DownOutlined />
-              </button>
-            </Dropdown>
-          </div>
-        </div>
-      )}
-
-      <main className="flex-grow">
+      <main className="flex-grow pt-20">
         <Outlet />
       </main>
     </div>
