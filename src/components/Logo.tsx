@@ -12,7 +12,7 @@ const Logo: FC = () => {
       <Link to="/">
         <Space align="center" className={styles["logo-container"]}>
           <img src={logo} className={styles.logo} alt="logo" />
-          <Title level={3}>RedArchive-小红书收藏点赞导出</Title>
+          <Title level={3}>RedArchive</Title>
         </Space>
       </Link>
     </div>

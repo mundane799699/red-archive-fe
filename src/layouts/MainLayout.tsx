@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import {
   FEEDBACK_PATHNAME,
   TUTORIAL_PATHNAME,
@@ -10,15 +10,21 @@ import {
   IMAGE_HOST_TUTORIAL,
 } from "../router";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { Button, Dropdown, Flex, Layout, MenuProps, Space, Typography } from "antd";
-import styles from "./MainLayout.module.scss";
+import {
+  Button,
+  Dropdown,
+  Flex,
+  Layout,
+  MenuProps,
+  Space,
+  Typography,
+} from "antd";
 import Logo from "../components/Logo";
-import { DownOutlined } from "@ant-design/icons";
-
-const { Header, Footer, Content } = Layout;
+import { DownOutlined, MenuOutlined } from "@ant-design/icons";
 
 const MainLayout: FC = () => {
   const nav = useNavigate();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const scriptItems: MenuProps["items"] = [
     {
       key: "1",
@@ -70,33 +76,93 @@ const MainLayout: FC = () => {
       label: <Link to={FEEDBACK_PATHNAME}>联系我</Link>,
     },
   ];
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
   return (
-    <Layout>
-      <header className={styles.header}>
-        <Flex justify="space-between" className={styles.container}>
+    <div className="flex flex-col min-h-screen">
+      <header className="bg-white shadow-md">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Logo />
-          <Space>
-            <Button onClick={() => nav(DOWNLOAD_PATHNAME)}>📦下载</Button>
-            <Button onClick={() => nav(PRICE_PATHNAME)}>💰价格</Button>
+          <nav className="hidden md:flex space-x-4">
+            <button
+              onClick={() => nav(DOWNLOAD_PATHNAME)}
+              className="btn border border-gray-300 rounded-md px-2 py-1"
+            >
+              📦下载
+            </button>
+            <button
+              onClick={() => nav(PRICE_PATHNAME)}
+              className="btn border border-gray-300 rounded-md px-2 py-1"
+            >
+              💰价格
+            </button>
             <Dropdown menu={{ items: tutorialItems }} placement="bottomLeft">
-              <Button>
+              <button className="btn border border-gray-300 rounded-md px-2 py-1">
                 📜教程
-                <DownOutlined />
-              </Button>
+                <DownOutlined className="ml-1" />
+              </button>
             </Dropdown>
             <Dropdown menu={{ items: scriptItems }} placement="bottomLeft">
-              <Button>
+              <button className="btn border border-gray-300 rounded-md px-2 py-1">
+                🐒油猴脚本(免费)
+                <DownOutlined className="ml-1" />
+              </button>
+            </Dropdown>
+          </nav>
+          <button
+            className="md:hidden cursor-pointer"
+            onClick={toggleMobileMenu}
+          >
+            <MenuOutlined />
+          </button>
+        </div>
+      </header>
+
+      {/* 移动端菜单 */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white shadow-md border-t border-gray-200">
+          <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+            <button
+              onClick={() => nav(DOWNLOAD_PATHNAME)}
+              className="btn w-full text-left"
+            >
+              📦下载
+            </button>
+            <button
+              onClick={() => nav(PRICE_PATHNAME)}
+              className="btn w-full text-left"
+            >
+              💰价格
+            </button>
+            <Dropdown
+              menu={{ items: tutorialItems }}
+              placement="bottomLeft"
+              trigger={["click"]}
+            >
+              <button className="btn w-full text-left flex justify-between items-center">
+                📜教程
+                <DownOutlined />
+              </button>
+            </Dropdown>
+            <Dropdown
+              menu={{ items: scriptItems }}
+              placement="bottomLeft"
+              trigger={["click"]}
+            >
+              <button className="btn w-full text-left flex justify-between items-center">
                 🐒油猴脚本(免费)
                 <DownOutlined />
-              </Button>
+              </button>
             </Dropdown>
-          </Space>
-        </Flex>
-      </header>
-      <Content className={styles.main}>
+          </div>
+        </div>
+      )}
+
+      <main className="flex-grow">
         <Outlet />
-      </Content>
-    </Layout>
+      </main>
+    </div>
   );
 };
 export default MainLayout;
