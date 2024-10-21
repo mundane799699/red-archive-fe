@@ -1,5 +1,4 @@
 import { FC } from "react";
-import styles from "./Download.module.scss";
 import { Card, Typography } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 
@@ -7,45 +6,38 @@ const { Link } = Typography;
 
 const Download: FC = () => {
   return (
-    <div className={styles.container}>
-      <div className={styles.content}>
-        <div className={styles["btn-container"]}>
-          <Card title="Windows" style={{ width: 300, textAlign: "center" }}>
-            <Link
-              href="https://cdn.dreamfree.xyz/updater/RedArchive-Windows-1.5.0-Setup.exe"
-              target="_blank"
-            >
-              <DownloadOutlined
-                style={{ fontSize: "30px", color: "#000000" }}
-              />
-            </Link>
-          </Card>
-          <Card
+    <div className="h-full bg-gradient-to-br from-[#ee9ca7] to-[#ffdde1]">
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex flex-col items-center space-y-6 md:flex-row md:justify-around md:space-y-0 md:space-x-4">
+          <DownloadCard
+            title="Windows"
+            href="https://cdn.dreamfree.xyz/updater/RedArchive-Windows-1.5.0-Setup.exe"
+          />
+          <DownloadCard
             title="Mac Intel芯片"
-            style={{ width: 300, textAlign: "center" }}
-          >
-            <Link
-              href="https://cdn.dreamfree.xyz/updater/RedArchive-Mac-x64-1.5.0-Installer.dmg"
-              target="_blank"
-            >
-              <DownloadOutlined
-                style={{ fontSize: "30px", color: "#000000" }}
-              />
-            </Link>
-          </Card>
-          <Card title="Mac M芯片" style={{ width: 300, textAlign: "center" }}>
-            <Link
-              href="https://cdn.dreamfree.xyz/updater/RedArchive-Mac-arm64-1.5.0-Installer.dmg"
-              target="_blank"
-            >
-              <DownloadOutlined
-                style={{ fontSize: "30px", color: "#000000" }}
-              />
-            </Link>
-          </Card>
+            href="https://cdn.dreamfree.xyz/updater/RedArchive-Mac-x64-1.5.0-Installer.dmg"
+          />
+          <DownloadCard
+            title="Mac M芯片"
+            href="https://cdn.dreamfree.xyz/updater/RedArchive-Mac-arm64-1.5.0-Installer.dmg"
+          />
         </div>
       </div>
     </div>
   );
 };
+
+interface DownloadCardProps {
+  title: string;
+  href: string;
+}
+
+const DownloadCard: FC<DownloadCardProps> = ({ title, href }) => (
+  <Card title={title} className="w-full md:w-72 text-center">
+    <Link href={href} target="_blank">
+      <DownloadOutlined className="text-3xl text-black" />
+    </Link>
+  </Card>
+);
+
 export default Download;

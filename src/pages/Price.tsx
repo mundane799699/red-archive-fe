@@ -1,47 +1,58 @@
 import { FC } from "react";
-import styles from "./Price.module.scss";
 import { Typography } from "antd";
-const { Title, Paragraph, Link } = Typography;
+const { Title, Paragraph } = Typography;
 
 const Price: FC = () => {
   return (
-    <div className={styles.container}>
-      <div className={styles.content}>
-        <Title>定价计划</Title>
-        <div className={styles.priceList}>
-          <div className={styles.priceCard}>
-            <p>月度会员</p>
-            <p>
-              <span className={styles["price-discount"]}>¥6.9</span>
-              <span className={styles["original-price"]}>¥9.9</span>
-            </p>
-          </div>
-          <div className={styles.priceCard}>
-            <p>年度会员</p>
-            <p>
-              <span className={styles["price-discount"]}>¥38</span>
-              <span className={styles["original-price"]}>¥69</span>
-            </p>
-          </div>
-          <div className={styles.priceCard}>
-            <p>终生会员</p>
-            <p>
-              <span className={styles["price-discount"]}>¥198</span>
-              <span className={styles["original-price"]}>¥298</span>
-            </p>
-          </div>
+    <div className="h-full bg-gradient-to-br from-[#ee9ca7] to-[#ffdde1]">
+      <div className="container mx-auto px-4 py-8 flex flex-col items-center">
+        <Title className="text-center">定价计划</Title>
+        <div className="mt-12 w-full flex flex-col md:flex-row justify-between space-y-6 md:space-y-0 md:space-x-4">
+          <PriceCard
+            title="月度会员"
+            discountPrice="¥6.9"
+            originalPrice="¥9.9"
+          />
+          <PriceCard title="年度会员" discountPrice="¥38" originalPrice="¥69" />
+          <PriceCard
+            title="终生会员"
+            discountPrice="¥198"
+            originalPrice="¥298"
+          />
         </div>
-        <Title style={{ marginTop: 100 }}>为什么要收费？</Title>
-        <div>
-          <Paragraph className={styles.info}>
-            开发软件和其他任何脑力或体力的工作一样，投入了大量的时间和精力，为爱发电的形式很难保证提供持续且好用的服务。
-          </Paragraph>
-          <Paragraph className={styles.info}>
-            并且随着软件的更新，功能会更加完善，价格也会随之上涨。
+        <Title className="mt-24 text-center">为什么要收费？</Title>
+        <div className="mt-4 max-w-2xl">
+          <Paragraph className="text-base">
+            开发软件和其他任何脑力或体力的工作一样，投入了大量的时间和精力，为爱发电的形式很难保证提供持续且好用的服务。并且随着软件的更新，功能会更加完善，价格也会随之上涨。
           </Paragraph>
         </div>
       </div>
     </div>
   );
 };
+
+interface PriceCardProps {
+  title: string;
+  discountPrice: string;
+  originalPrice: string;
+}
+
+const PriceCard: FC<PriceCardProps> = ({
+  title,
+  discountPrice,
+  originalPrice,
+}) => (
+  <div className="flex flex-col items-center justify-center w-full md:w-64 h-48 bg-white rounded-lg shadow-md">
+    <p className="text-2xl font-bold">{title}</p>
+    <p>
+      <span className="text-2xl font-bold text-orange-500">
+        {discountPrice}
+      </span>
+      <span className="ml-2 text-lg text-gray-600 line-through">
+        {originalPrice}
+      </span>
+    </p>
+  </div>
+);
+
 export default Price;
