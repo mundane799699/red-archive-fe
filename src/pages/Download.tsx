@@ -11,15 +11,15 @@ const Download: FC = () => {
         <div className="flex flex-col items-center space-y-6 md:flex-row md:justify-around md:space-y-0 md:space-x-4">
           <DownloadCard
             title="Windows"
-            href="https://cdn.dreamfree.xyz/updater/RedArchive-Windows-1.5.1-Setup.exe"
+            href="https://cdn.dreamfree.xyz/updater/RedArchive-Windows-1.5.2-Setup.exe"
           />
           <DownloadCard
             title="Mac Intel芯片"
-            href="https://cdn.dreamfree.xyz/updater/RedArchive-Mac-x64-1.5.1-Installer.dmg"
+            href="https://cdn.dreamfree.xyz/updater/RedArchive-Mac-x64-1.5.2-Installer.dmg"
           />
           <DownloadCard
             title="Mac M芯片"
-            href="https://cdn.dreamfree.xyz/updater/RedArchive-Mac-arm64-1.5.1-Installer.dmg"
+            href="https://cdn.dreamfree.xyz/updater/RedArchive-Mac-arm64-1.5.2-Installer.dmg"
           />
         </div>
       </div>
