@@ -67,7 +67,7 @@ const Collect: FC = () => {
           </a>
         );
       },
-      with: 300,
+      width: 300,
     },
     {
       title: "笔记标题",
