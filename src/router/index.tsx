@@ -13,6 +13,7 @@ import ScriptTutorial from "../pages/ScriptTutorial";
 import Price from "../pages/Price";
 import NotionTutorial from "../pages/NotionTutorial";
 import ImageHostTutorial from "../pages/ImageHostTutorial";
+import HomepageTutorial from "../pages/HomepageTutorial";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
         element: <Feedback />,
       },
       {
+        path: "homepageTutorial",
+        element: <HomepageTutorial />,
+      },
+      {
         path: "*",
         element: <NotFound />,
       },
@@ -88,3 +93,4 @@ export const DOWNLOAD_PATHNAME = "/download";
 export const PRICE_PATHNAME = "/price";
 export const NOTION_TUTORIAL = "/notionTutorial";
 export const IMAGE_HOST_TUTORIAL = "/imageHostTutorial";
+export const HOMEPAGE_TUTORIAL = "/homepageTutorial";

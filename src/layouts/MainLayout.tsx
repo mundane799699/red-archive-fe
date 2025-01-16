@@ -8,6 +8,7 @@ import {
   PRICE_PATHNAME,
   NOTION_TUTORIAL,
   IMAGE_HOST_TUTORIAL,
+  HOMEPAGE_TUTORIAL,
 } from "../router";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import {
@@ -57,14 +58,18 @@ const MainLayout: FC = () => {
     },
     {
       key: "2",
-      label: <Link to={NOTION_TUTORIAL}>Notion集成</Link>,
+      label: <Link to={HOMEPAGE_TUTORIAL}>主页批量操作教程</Link>,
     },
     {
       key: "3",
-      label: <Link to={IMAGE_HOST_TUTORIAL}>图床设置</Link>,
+      label: <Link to={NOTION_TUTORIAL}>Notion集成</Link>,
     },
     {
       key: "4",
+      label: <Link to={IMAGE_HOST_TUTORIAL}>图床设置</Link>,
+    },
+    {
+      key: "5",
       label: (
         <a href="https://support.qq.com/products/651950" target="_blank">
           问题反馈
@@ -72,7 +77,7 @@ const MainLayout: FC = () => {
       ),
     },
     {
-      key: "5",
+      key: "6",
       label: <Link to={FEEDBACK_PATHNAME}>联系我</Link>,
     },
   ];
