@@ -1,5 +1,4 @@
 import { FC } from "react";
-import styles from "./Tutorial.module.scss";
 import { Flex, Image, Typography } from "antd";
 import { Link } from "react-router-dom";
 
@@ -7,8 +6,12 @@ const { Title } = Typography;
 
 const Tutorial: FC = () => {
   return (
-    <div className={styles.container}>
-      <Flex vertical={true} gap={"small"} className={styles.content}>
+    <div className="h-full bg-gradient-to-br from-[#ee9ca7] to-[#ffdde1]">
+      <Flex
+        vertical={true}
+        gap={"small"}
+        className="container mx-auto px-4 py-8"
+      >
         <Title>使用教程:</Title>
         <Title level={2}>
           1、在
