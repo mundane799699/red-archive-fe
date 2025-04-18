@@ -75,39 +75,12 @@ const ScriptTutorial: FC = () => {
           <Image src={"https://cdn.mundane.ink/202403272147026.png"} />
         </div>
         <div className="mb-4">
-          <Title>7、采集详情</Title>
-          <Title level={3}>
-            在收藏这个tab, 输入userId, 然后点击搜索,
-            可以看到收藏数据。但请注意这时候收藏数据还没有笔记详情
-          </Title>
-          <Title level={3}>
-            接着点击"采集详情"按钮开始采集笔记详情。你可以点击"查询采集进度"按钮来查看进度。
-          </Title>
-          <Image
-            className="w-full"
-            src={"https://cdn.mundane.ink/202403272152824.png"}
-          />
-        </div>
-        <div className="mb-4">
-          <Title>8、等待采集完成</Title>
-          <Title level={3}>
-            当查询到采集完成后, 重新点击搜索按钮,
-            可以看到所有收藏笔记的笔记内容都出来了。说明笔记详情已采集完毕。
-          </Title>
-          <Image
-            className="w-full"
-            src={"https://cdn.mundane.ink/202403272207566.png"}
-          />
-        </div>
-        <div className="mb-4">
-          <Title>9、点赞数据的导出</Title>
+          <Title>7、点赞数据的导出</Title>
           <Title level={3}>过程和收藏数据导出类似</Title>
         </div>
         <div className="mb-4">
-          <Title>10、如果遇到问题</Title>
-          <Title level={3}>
-            服务正在完善中, 遇到意外问题可以刷新网页重试, 或者联系我
-          </Title>
+          <Title>8、如果遇到问题</Title>
+          <Title level={3}>遇到意外问题可以刷新网页重试, 或者联系我</Title>
         </div>
       </div>
     </div>

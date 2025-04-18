@@ -69,6 +69,18 @@ const Home: FC = () => {
             </span>
             <div className="flex flex-col items-center md:flex-row">
               <a
+                href="https://danci.mundane.ink"
+                className="text-gray-600 hover:underline mb-2 md:mb-0 md:mr-2"
+              >
+                邮件单词
+              </a>
+              <a
+                href="https://readecho.cn"
+                className="text-gray-600 hover:underline mb-2 md:mb-0 md:mr-2"
+              >
+                readecho
+              </a>
+              <a
                 href="https://toolsapp.cc/"
                 className="text-gray-600 hover:underline mb-2 md:mb-0 md:mr-2"
               >
