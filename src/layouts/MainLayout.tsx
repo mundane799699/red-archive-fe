@@ -29,7 +29,11 @@ const MainLayout: FC = () => {
   const scriptItems: MenuProps["items"] = [
     {
       key: "1",
-      label: <Link to={SCRIPT_TUTORIAL}>使用教程</Link>,
+      label: (
+        <Link onClick={() => setMobileMenuOpen(false)} to={SCRIPT_TUTORIAL}>
+          使用教程
+        </Link>
+      ),
     },
     {
       key: "2",
@@ -44,29 +48,53 @@ const MainLayout: FC = () => {
     },
     {
       key: "3",
-      label: <Link to={MANAGE_PATHNAME}>数据管理页</Link>,
+      label: (
+        <Link onClick={() => setMobileMenuOpen(false)} to={MANAGE_PATHNAME}>
+          数据管理页
+        </Link>
+      ),
     },
     {
       key: "4",
-      label: <Link to={FEEDBACK_PATHNAME}>问题反馈</Link>,
+      label: (
+        <Link onClick={() => setMobileMenuOpen(false)} to={FEEDBACK_PATHNAME}>
+          问题反馈
+        </Link>
+      ),
     },
   ];
   const tutorialItems: MenuProps["items"] = [
     {
       key: "1",
-      label: <Link to={TUTORIAL_PATHNAME}>使用说明</Link>,
+      label: (
+        <Link onClick={() => setMobileMenuOpen(false)} to={TUTORIAL_PATHNAME}>
+          使用说明
+        </Link>
+      ),
     },
     {
       key: "2",
-      label: <Link to={HOMEPAGE_TUTORIAL}>主页批量操作教程</Link>,
+      label: (
+        <Link onClick={() => setMobileMenuOpen(false)} to={HOMEPAGE_TUTORIAL}>
+          主页批量操作教程
+        </Link>
+      ),
     },
     {
       key: "3",
-      label: <Link to={NOTION_TUTORIAL}>Notion集成</Link>,
+      label: (
+        <Link onClick={() => setMobileMenuOpen(false)} to={NOTION_TUTORIAL}>
+          Notion集成
+        </Link>
+      ),
     },
     {
       key: "4",
-      label: <Link to={IMAGE_HOST_TUTORIAL}>图床设置</Link>,
+      label: (
+        <Link onClick={() => setMobileMenuOpen(false)} to={IMAGE_HOST_TUTORIAL}>
+          图床设置
+        </Link>
+      ),
     },
     {
       key: "5",
@@ -78,7 +106,11 @@ const MainLayout: FC = () => {
     },
     {
       key: "6",
-      label: <Link to={FEEDBACK_PATHNAME}>联系我</Link>,
+      label: (
+        <Link onClick={() => setMobileMenuOpen(false)} to={FEEDBACK_PATHNAME}>
+          联系我
+        </Link>
+      ),
     },
   ];
   const toggleMobileMenu = () => {
@@ -127,13 +159,19 @@ const MainLayout: FC = () => {
           <div className="md:hidden bg-white shadow-md border-t border-gray-200">
             <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
               <button
-                onClick={() => nav(DOWNLOAD_PATHNAME)}
+                onClick={() => {
+                  nav(DOWNLOAD_PATHNAME);
+                  setMobileMenuOpen(false);
+                }}
                 className="btn w-full text-left"
               >
                 📦下载
               </button>
               <button
-                onClick={() => nav(PRICE_PATHNAME)}
+                onClick={() => {
+                  nav(PRICE_PATHNAME);
+                  setMobileMenuOpen(false);
+                }}
                 className="btn w-full text-left"
               >
                 💰价格
