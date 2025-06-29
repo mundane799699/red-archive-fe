@@ -1,15 +1,16 @@
-import React, { FC } from "react";
+import React, { FC, useRef } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { Button, Space, message } from "antd";
+import { Button, Space } from "antd";
 
-import styles from "./ManageLayout.module.scss";
 import { BarsOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
+import { ScrollContext } from "../contexts/ScrollContext";
 const ManageLayout: FC = () => {
   const nav = useNavigate();
   const { pathname } = useLocation();
+  const scrollableContainerRef = useRef<HTMLDivElement>(null);
   return (
-    <div className={styles.container}>
-      <div className={styles.left}>
+    <div className="mx-auto flex h-full">
+      <div className="w-[120px] border-r border-gray-200">
         <Space direction="vertical">
           <Button
             type={pathname.startsWith("/manage/my") ? "default" : "text"}
@@ -37,8 +38,10 @@ const ManageLayout: FC = () => {
           </Button>
         </Space>
       </div>
-      <div className={styles.right}>
-        <Outlet />
+      <div className="flex-1 px-4 overflow-y-auto" ref={scrollableContainerRef}>
+        <ScrollContext.Provider value={scrollableContainerRef}>
+          <Outlet />
+        </ScrollContext.Provider>
       </div>
     </div>
   );

@@ -1,12 +1,12 @@
 import { useRequest } from "ahooks";
-import { FC, useState } from "react";
+import { FC, useEffect, useState, useContext } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Typography, Table, Image, Pagination, Button } from "antd";
-import styles from "./Collect.module.scss";
 import { DEFAULT_PAGE_SIZE, LIST_USER_ID_PARAM_KEY } from "../../constant";
 import { getCollectListService } from "../../services/collect";
 import CollectListSearch from "../../components/CollectListSearch";
 import axios from "axios";
+import { ScrollContext } from "../../contexts/ScrollContext";
 
 const { Title } = Typography;
 
@@ -21,6 +21,8 @@ const Collect: FC = () => {
     current: 1,
     pageSize: DEFAULT_PAGE_SIZE,
   });
+
+  const scrollableContainerRef = useContext(ScrollContext);
 
   const { run: query } = useRequest(
     async () => {
@@ -57,25 +59,37 @@ const Collect: FC = () => {
     {
       title: "封面图",
       dataIndex: "coverUrl",
-      render: (url: string, record: any) => {
+      render: (url: string) => {
+        const httpsUrl = url.replace("http://", "https://");
         return (
-          <a
-            href={`https://www.xiaohongshu.com/explore/${record.noteId}`}
-            target="_blank"
-          >
-            <Image src={url} width={200} />
-          </a>
+          <Image src={httpsUrl} width={200} referrerPolicy="no-referrer" />
         );
       },
       width: 300,
     },
     {
+      title: "笔记ID",
+      dataIndex: "noteId",
+      render: (noteId: string, record: any) => {
+        return (
+          <a
+            href={`https://www.xiaohongshu.com/explore/${noteId}?xsec_token=${record.xsecToken}&xsec_source=pc_collect`}
+            target="_blank"
+          >
+            {noteId}
+          </a>
+        );
+      },
+      width: 100,
+    },
+    {
       title: "笔记标题",
       dataIndex: "displayTitle",
       render: (title: string, record: any) => {
+        // https://www.xiaohongshu.com/explore/685eaf01000000002400c9c5?xsec_token=ABU5jRmpW3Npjt9CH-SOZX6V316tqfJEnjP_dBetF7ZBc=&xsec_source=pc_collect
         return (
           <a
-            href={`https://www.xiaohongshu.com/explore/${record.noteId}`}
+            href={`https://www.xiaohongshu.com/explore/${record.noteId}?xsec_token=${record.xsecToken}&xsec_source=pc_collect`}
             target="_blank"
           >
             {title}
@@ -172,25 +186,31 @@ const Collect: FC = () => {
     }
   }
 
+  useEffect(() => {
+    if (scrollableContainerRef && scrollableContainerRef.current) {
+      scrollableContainerRef.current.scrollTo(0, 0);
+    }
+  }, [queryParam.current, scrollableContainerRef]);
+
   return (
-    <>
-      <div className={styles.header}>
+    <div className="py-4">
+      <div className="flex mb-5">
         <Title level={3}>我的收藏</Title>
       </div>
-      <div className={styles.search}>
+      <div className="mb-5">
         <CollectListSearch
           queryParam={queryParam}
           setQueryParam={setQueryParam}
         />
       </div>
-      <div className={styles.content}>
+      <div className="mb-5">
         <Table
           dataSource={dataSource}
           columns={tableColumns}
           pagination={false}
         ></Table>
       </div>
-      <div className={styles.footer}>
+      <div className="text-center">
         <Pagination
           current={queryParam.current}
           pageSize={queryParam.pageSize}
@@ -198,7 +218,7 @@ const Collect: FC = () => {
           onChange={handlePageChange}
         />
       </div>
-    </>
+    </div>
   );
 };
 export default Collect;

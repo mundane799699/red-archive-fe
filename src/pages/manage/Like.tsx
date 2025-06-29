@@ -2,7 +2,6 @@ import { useRequest, useTitle } from "ahooks";
 import { FC, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Typography, Table, Image, Pagination, Button } from "antd";
-import styles from "./Like.module.scss";
 import { DEFAULT_PAGE_SIZE, LIST_USER_ID_PARAM_KEY } from "../../constant";
 import { getLikeListService } from "../../services/like";
 import LikeListSearch from "../../components/LikeListSearch";
@@ -58,7 +57,10 @@ const Like: FC = () => {
       dataIndex: "coverUrl",
       render: (url: string, record: any) => {
         return (
-          <a href={`https://www.xiaohongshu.com/explore/${record.noteId}`} target="_blank">
+          <a
+            href={`https://www.xiaohongshu.com/explore/${record.noteId}`}
+            target="_blank"
+          >
             <Image src={url} width={200} />
           </a>
         );
@@ -70,7 +72,10 @@ const Like: FC = () => {
       dataIndex: "displayTitle",
       render: (title: string, record: any) => {
         return (
-          <a href={`https://www.xiaohongshu.com/explore/${record.noteId}`} target="_blank">
+          <a
+            href={`https://www.xiaohongshu.com/explore/${record.noteId}`}
+            target="_blank"
+          >
             {title}
           </a>
         );
@@ -86,7 +91,10 @@ const Like: FC = () => {
       width: 100,
       render: (nickname: string, record: any) => {
         return (
-          <a href={`https://www.xiaohongshu.com/user/profile/${record.ownerId}`} target="_blank">
+          <a
+            href={`https://www.xiaohongshu.com/user/profile/${record.ownerId}`}
+            target="_blank"
+          >
             {nickname}
           </a>
         );
@@ -135,14 +143,20 @@ const Like: FC = () => {
   async function downloadMd(noteId: string) {
     try {
       const data = { noteId };
-      const response = await axios.post("/mail/redbook/note/exportNoteMd", data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        responseType: "blob",
-      });
+      const response = await axios.post(
+        "/mail/redbook/note/exportNoteMd",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          responseType: "blob",
+        }
+      );
       const contentDisposition = response.headers["content-disposition"];
-      const filenameMatch = decodeURIComponent(contentDisposition.match(/filename\=(.*)/)[1]);
+      const filenameMatch = decodeURIComponent(
+        contentDisposition.match(/filename\=(.*)/)[1]
+      );
       const filename = filenameMatch || "file.md";
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const a = document.createElement("a");
@@ -158,16 +172,20 @@ const Like: FC = () => {
 
   return (
     <>
-      <div className={styles.header}>
+      <div className="flex mb-5">
         <Title level={3}>我的点赞</Title>
       </div>
-      <div className={styles.search}>
+      <div className="mb-5">
         <LikeListSearch queryParam={queryParam} setQueryParam={setQueryParam} />
       </div>
-      <div className={styles.content}>
-        <Table dataSource={dataSource} columns={tableColumns} pagination={false}></Table>
+      <div className="mb-5">
+        <Table
+          dataSource={dataSource}
+          columns={tableColumns}
+          pagination={false}
+        ></Table>
       </div>
-      <div className={styles.footer}>
+      <div className="text-center">
         <Pagination
           current={queryParam.current}
           pageSize={queryParam.pageSize}

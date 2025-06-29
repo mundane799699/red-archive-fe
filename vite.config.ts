@@ -9,4 +9,9 @@ export default defineConfig({
       "@": "/src",
     },
   },
+  server: {
+    proxy: {
+      "/mail": "http://localhost:8088",
+    },
+  },
 });

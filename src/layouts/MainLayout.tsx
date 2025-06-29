@@ -118,8 +118,8 @@ const MainLayout: FC = () => {
   };
   return (
     <div className="flex flex-col h-screen">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <header className="h-16 fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+        <div className="container mx-auto px-4 flex justify-between items-center">
           <Logo />
           <nav className="hidden md:flex space-x-4">
             <button
@@ -201,7 +201,7 @@ const MainLayout: FC = () => {
         )}
       </header>
 
-      <main className="flex-grow pt-20">
+      <main className="h-full pt-16">
         <Outlet />
       </main>
     </div>
