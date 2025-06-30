@@ -4,12 +4,22 @@ import styles from "./ListSearch.module.scss";
 import axios from "axios";
 import { DeleteOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import { useRequest } from "ahooks";
-import { deleteLikeService, parseDetailService, queryTaskProgress } from "../services/like";
+import {
+  deleteLikeService,
+  parseDetailService,
+  queryTaskProgress,
+} from "../services/like";
 
 const { confirm } = Modal;
 
 type PropsType = {
-  queryParam: { userId: string; title: string; author: string; current: number; pageSize: number };
+  queryParam: {
+    userId: string;
+    title: string;
+    author: string;
+    current: number;
+    pageSize: number;
+  };
   setQueryParam: (params: {
     userId: string;
     title: string;
@@ -45,24 +55,33 @@ const ListSearch: FC<PropsType> = (props: PropsType) => {
     }
   );
 
-  const { run: queryDetail } = useRequest(async () => await queryTaskProgress(userId), {
-    manual: true,
-    onSuccess: data => {
-      message.info(data);
-    },
-  });
+  const { run: queryDetail } = useRequest(
+    async () => await queryTaskProgress(userId),
+    {
+      manual: true,
+      onSuccess: (data) => {
+        message.info(data);
+      },
+    }
+  );
 
   async function exportExcel() {
     try {
       const data = { userId, displayTitle: title, ownerNickname: author };
-      const response = await axios.post("/mail/redbook/like/exportexcel", data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        responseType: "blob",
-      });
+      const response = await axios.post(
+        "/mail/redbook/like/exportexcel",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          responseType: "blob",
+        }
+      );
       const contentDisposition = response.headers["content-disposition"];
-      const filenameMatch = decodeURIComponent(contentDisposition.match(/filename\=(.*)/)[1]);
+      const filenameMatch = decodeURIComponent(
+        contentDisposition.match(/filename\=(.*)/)[1]
+      );
       const filename = filenameMatch || "file.xlsx";
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const a = document.createElement("a");
@@ -86,7 +105,9 @@ const ListSearch: FC<PropsType> = (props: PropsType) => {
         responseType: "blob",
       });
       const contentDisposition = response.headers["content-disposition"];
-      const filenameMatch = decodeURIComponent(contentDisposition.match(/filename\=(.*)/)[1]);
+      const filenameMatch = decodeURIComponent(
+        contentDisposition.match(/filename\=(.*)/)[1]
+      );
       const filename = filenameMatch || "file.html";
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const a = document.createElement("a");
@@ -110,22 +131,12 @@ const ListSearch: FC<PropsType> = (props: PropsType) => {
     });
   }
 
-  function startParseTask() {
-    confirm({
-      title: `确定开始采集用户${userId}的笔记详情吗？`,
-      okText: "确定",
-      cancelText: "取消",
-      icon: <ExclamationCircleOutlined />,
-      onOk: parseDetail,
-    });
-  }
-
   return (
     <div>
       <div className={styles.top}>
         <Input
           autoComplete="on"
-          onChange={e => {
+          onChange={(e) => {
             setUserId(e.target.value);
           }}
           value={userId}
@@ -134,7 +145,7 @@ const ListSearch: FC<PropsType> = (props: PropsType) => {
           placeholder="请输入用户ID(必填)"
         />
         <Input
-          onChange={e => {
+          onChange={(e) => {
             setTitle(e.target.value);
           }}
           value={title}
@@ -143,7 +154,7 @@ const ListSearch: FC<PropsType> = (props: PropsType) => {
           placeholder="请输入笔记标题"
         />
         <Input
-          onChange={e => {
+          onChange={(e) => {
             setAuthor(e.target.value);
           }}
           value={author}
@@ -162,7 +173,11 @@ const ListSearch: FC<PropsType> = (props: PropsType) => {
       </div>
       <div className={styles.bottom}>
         <div className={styles.left}>
-          <Button className={styles.export} type="primary" onClick={exportExcel}>
+          <Button
+            className={styles.export}
+            type="primary"
+            onClick={exportExcel}
+          >
             导出excel
           </Button>
           <Button className={styles.export} type="primary" onClick={exportHtml}>
@@ -176,19 +191,6 @@ const ListSearch: FC<PropsType> = (props: PropsType) => {
             disabled={deleteLoading}
           >
             删除
-          </Button>
-        </div>
-        <div className={styles.right}>
-          <Button
-            className={styles.start}
-            type="primary"
-            disabled={parseLoading}
-            onClick={startParseTask}
-          >
-            采集详情
-          </Button>
-          <Button className={styles.showProgress} type="primary" onClick={queryDetail}>
-            查询采集进度
           </Button>
         </div>
       </div>

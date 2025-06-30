@@ -55,25 +55,37 @@ const Like: FC = () => {
     {
       title: "封面图",
       dataIndex: "coverUrl",
-      render: (url: string, record: any) => {
+      render: (url: string) => {
+        const httpsUrl = url.replace("http://", "https://");
         return (
-          <a
-            href={`https://www.xiaohongshu.com/explore/${record.noteId}`}
-            target="_blank"
-          >
-            <Image src={url} width={200} />
-          </a>
+          <Image src={httpsUrl} width={200} referrerPolicy="no-referrer" />
         );
       },
       with: 300,
     },
     {
+      title: "笔记ID",
+      dataIndex: "noteId",
+      render: (noteId: string, record: any) => {
+        return (
+          <a
+            href={`https://www.xiaohongshu.com/explore/${noteId}?xsec_token=${record.xsecToken}&xsec_source=pc_like`}
+            target="_blank"
+          >
+            {noteId}
+          </a>
+        );
+      },
+      width: 100,
+    },
+    {
       title: "笔记标题",
       dataIndex: "displayTitle",
       render: (title: string, record: any) => {
+        // https://www.xiaohongshu.com/explore/684bbed20000000023014163?xsec_token=ABPjDPZlAj6VvxVf7S-SIYciizloGTRU2TmQUYf1QY0Eo=&xsec_source=pc_like
         return (
           <a
-            href={`https://www.xiaohongshu.com/explore/${record.noteId}`}
+            href={`https://www.xiaohongshu.com/explore/${record.noteId}?xsec_token=${record.xsecToken}&xsec_source=pc_like`}
             target="_blank"
           >
             {title}
