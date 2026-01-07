@@ -31,16 +31,26 @@ const NotionTutorial: FC = () => {
           <Title level={2}>3、创建新集成</Title>
           <Title level={3}>点击+号以创建新集成</Title>
           <Image src={"https://cdn.mundane.ink/202408281653266.png"} />
-          <Title level={3}>集成名字建议填redArchive, 然后关联自己的工作空间，最后点保存</Title>
+          <Title level={3}>
+            集成名字建议填redArchive, 然后关联自己的工作空间，最后点保存
+          </Title>
           <Image src={"https://cdn.mundane.ink/202408281657105.png"} />
         </div>
 
         <div className={styles.mb}>
           <Title level={2}>4、拷贝并设置集成秘钥</Title>
           <Title level={3}>点击拷贝</Title>
-          <Image style={{ width: "100%" }} src={"https://cdn.mundane.ink/202408281710936.png"} />
-          <Title level={3}>打开RedArchive的设置页面，粘贴到Secret key，然后保存</Title>
-          <Image style={{ width: "100%" }} src={"https://cdn.mundane.ink/202408281716301.png"} />
+          <Image
+            style={{ width: "100%" }}
+            src={"https://cdn.mundane.ink/202408281710936.png"}
+          />
+          <Title level={3}>
+            打开RedArchive的设置页面，粘贴到Secret key，然后保存
+          </Title>
+          <Image
+            style={{ width: "100%" }}
+            src={"https://cdn.mundane.ink/202408281716301.png"}
+          />
         </div>
 
         <div className={styles.mb}>
@@ -57,40 +67,64 @@ const NotionTutorial: FC = () => {
 
         <div className={styles.mb}>
           <Title level={2}>6、将页面关联集成</Title>
-          <Title level={3}>点击页面左上角的三个小点，再选择连接，再选择之前创建的集成</Title>
-          <Image style={{ width: "100%" }} src={"https://cdn.mundane.ink/202408281735733.png"} />
+          <Title level={3}>
+            点击页面左上角的三个小点，再选择连接，再选择之前创建的集成
+          </Title>
+          <Image
+            style={{ width: "100%" }}
+            src={"https://cdn.mundane.ink/202408281735733.png"}
+          />
         </div>
 
         <div className={styles.mb}>
-          <Title level={2}>7、拷贝并设置页面ID</Title>
-          <Title level={3}>
+          <h3 className="font-bold text-2xl mt-2">7、拷贝并设置页面ID</h3>
+          <h3 className="font-bold text-xl mt-2">
             页面ID是一串由数字和字母组成的字符串。选中小红书收藏这个页面，在地址栏中拷贝notion.so/后面那串数字和字母
-          </Title>
-          <Title level={3} className={styles.text}>
-            但是要注意，如果你的页面地址是类似“https://www.notion.so/RedArchive-65d1ff80c06b421fb47987021571bef3”这样的，那么页面ID就是65d1ff80c06b421fb47987021571bef3
-          </Title>
-          <Title level={3} className={styles.text}>
-            示例1：复制页面ID
-          </Title>
+          </h3>
+          <h3 className="font-bold text-xl">注意</h3>
+          <h3 className="font-bold text-xl mt-2">
+            如果你的页面地址是类似“
+            <span className="text-blue-500">
+              https://www.notion.so/RedArchive-65d1ff80c06b421fb47987021571bef3
+            </span>
+            ”这样的，那么页面ID就是65d1ff80c06b421fb47987021571bef3
+          </h3>
+          <h3 className="font-bold text-xl mt-2">
+            如果你的页面地址是类似“
+            <span className="text-blue-500">
+              https://www.notion.so/mundane799699/2b46dec80bac4253b05248f075b124dc?pvs=12
+            </span>
+            ”这样的，那么页面ID就是2b46dec80bac4253b05248f075b124dc
+          </h3>
+          <h3 className="font-bold text-xl mt-2">示例1：复制页面ID</h3>
           <Image src={"https://cdn.mundane.ink/202408281743908.png"} />
-          <Title level={3}>打开RedArchive的设置页面，粘贴到收藏同步页面ID，然后保存</Title>
+          <h3 className="font-bold text-xl mt-2">
+            打开RedArchive的设置页面，粘贴到收藏同步页面ID，然后保存
+          </h3>
           <Image src={"https://cdn.mundane.ink/202408281745202.png"} />
-          <Title level={3} className={styles.mt30}>
+          <h3 className="font-bold text-xl mt-2">
             示例2：如果你的页面标题是英文，页面ID要取“你的英文标题-”后面那串
-          </Title>
+          </h3>
           <Image src={"https://cdn.mundane.ink/202409062006782.png"} />
-          <Image className={styles.mt10} src={"https://cdn.mundane.ink/202409062008339.png"} />
+          <Image
+            className={styles.mt10}
+            src={"https://cdn.mundane.ink/202409062008339.png"}
+          />
         </div>
 
         <div className={styles.mb}>
           <Title level={2}>8、点赞同步和专辑同步同理</Title>
-          <Title level={3}>点赞同步和专辑同步同理，设置页面集成的时候可以使用同一个集成</Title>
+          <Title level={3}>
+            点赞同步和专辑同步同理，设置页面集成的时候可以使用同一个集成
+          </Title>
           <Image src={"https://cdn.mundane.ink/202408281747606.png"} />
         </div>
 
         <div className={styles.mb}>
           <Title level={2}>9、同步效果</Title>
-          <Title level={3}>目前只是同步了图片链接和视频链接，不支持在线查看，后续再考虑</Title>
+          <Title level={3}>
+            目前只是同步了图片链接和视频链接，不支持在线查看，后续再考虑
+          </Title>
           <Image src={"https://cdn.mundane.ink/202408281804880.png"} />
         </div>
       </div>
