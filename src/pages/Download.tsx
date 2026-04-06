@@ -4,6 +4,8 @@ import { DownloadOutlined } from "@ant-design/icons";
 
 const { Link } = Typography;
 
+const version = "2.0.0";
+
 const Download = () => {
   return (
     <div className="h-full bg-gradient-to-br from-[#ee9ca7] to-[#ffdde1]">
@@ -11,15 +13,15 @@ const Download = () => {
         <div className="flex flex-col items-center space-y-6 md:flex-row md:justify-around md:space-y-0 md:space-x-4">
           <DownloadCard
             title="Windows"
-            href="https://cdn.dreamfree.xyz/updater/RedArchive-Windows-1.8.8-Setup.exe"
+            href={`https://cdn.dreamfree.xyz/updater/RedArchive-Windows-${version}-Setup.exe`}
           />
           <DownloadCard
             title="Mac Intel芯片"
-            href="https://cdn.dreamfree.xyz/updater/RedArchive-Mac-x64-1.8.8-Installer.dmg"
+            href={`https://cdn.dreamfree.xyz/updater/RedArchive-Mac-x64-${version}-Installer.dmg`}
           />
           <DownloadCard
             title="Mac M芯片"
-            href="https://cdn.dreamfree.xyz/updater/RedArchive-Mac-arm64-1.8.8-Installer.dmg"
+            href={`https://cdn.dreamfree.xyz/updater/RedArchive-Mac-arm64-${version}-Installer.dmg`}
           />
         </div>
       </div>
