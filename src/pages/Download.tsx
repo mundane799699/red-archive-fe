@@ -4,7 +4,7 @@ import { DownloadOutlined } from "@ant-design/icons";
 
 const { Link } = Typography;
 
-const version = "2.1.1";
+const version = "2.2.0";
 
 const Download = () => {
   return (
